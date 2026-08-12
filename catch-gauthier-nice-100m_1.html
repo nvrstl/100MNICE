@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where to catch Gauthier — Nice by UTMB 100M</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0E1622; --stone:#17222F; --stone2:#1E2C3C; --line:#2C3D51;
+  --mist:#8CA0B6; --chalk:#F2EFE8; --torch:#F0A93B; --sea:#2FA1A1; --alert:#D9513C;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--night); color:var(--chalk);
+  font-family:'Public Sans',system-ui,sans-serif; font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+.mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+h1,h2,h3,.disp{font-family:'Archivo',sans-serif;font-stretch:112%;}
+
+/* ---------- header ---------- */
+header{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--torch);margin:0 0 14px}
+h1{font-size:clamp(38px,7vw,68px);font-weight:800;letter-spacing:-.025em;line-height:.97;margin:0 0 18px}
+.lede{color:var(--mist);max-width:60ch;margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:0;margin:26px 0 0;border-top:1px solid var(--line)}
+.fact{padding:14px 22px 12px 0;margin-right:22px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact .v{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;display:block}
+.fact .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)}
+
+/* ---------- profile ---------- */
+.profile-sec{margin:38px 0 0}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mist);margin:0 0 12px}
+.profile-box{background:var(--stone);border:1px solid var(--line);border-radius:2px;padding:16px 12px 8px;overflow-x:auto}
+svg.prof{display:block;width:100%;min-width:640px;height:auto}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin:12px 2px 0;font-size:11.5px;color:var(--mist)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+
+/* ---------- controls ---------- */
+.controls{margin:34px 0 0;background:var(--stone);border:1px solid var(--line);border-radius:2px;padding:22px}
+.ctl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
+label{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin:0 0 7px}
+input,select{
+  width:100%;background:var(--night);color:var(--chalk);border:1px solid var(--line);
+  border-radius:2px;padding:10px 11px;font-family:'JetBrains Mono',monospace;font-size:15px;
+}
+input:focus,select:focus{outline:2px solid var(--torch);outline-offset:1px;border-color:var(--torch)}
+.hint{font-size:11.5px;color:var(--mist);margin:7px 0 0;line-height:1.4}
+.readout{margin:22px 0 0;padding:18px 0 0;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:34px;align-items:flex-end}
+.readout .big{font-family:'Archivo',sans-serif;font-stretch:112%;font-size:34px;font-weight:800;
+  letter-spacing:-.02em;line-height:1;color:var(--torch)}
+.readout .sub{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin-top:8px}
+.readout .mid{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:500}
+
+/* ---------- filter ---------- */
+.filters{display:flex;gap:8px;margin:36px 0 16px;flex-wrap:wrap;align-items:center}
+.chip{background:transparent;color:var(--mist);border:1px solid var(--line);border-radius:99px;
+  padding:7px 15px;font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--torch);color:var(--night);border-color:var(--torch);font-weight:700}
+.chip:focus-visible{outline:2px solid var(--torch);outline-offset:2px}
+
+/* ---------- station cards ---------- */
+.station{display:grid;grid-template-columns:78px 1fr;gap:0;border-top:1px solid var(--line);position:relative}
+.station:last-child{border-bottom:1px solid var(--line)}
+.rail{position:relative;padding:22px 0 22px}
+.rail .km{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;display:block;line-height:1.1}
+.rail .alt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mist)}
+.rail:before{content:"";position:absolute;left:62px;top:0;bottom:0;width:1px;background:var(--line)}
+.rail:after{content:"";position:absolute;left:58px;top:28px;width:9px;height:9px;border-radius:50%;
+  background:var(--mist);border:2px solid var(--night)}
+.station.reach .rail:after{background:var(--torch)}
+.station.fin .rail:after{background:var(--sea)}
+.body{padding:22px 0 24px 22px}
+.st-head{display:flex;justify-content:space-between;gap:14px;align-items:baseline;flex-wrap:wrap}
+.st-name{font-family:'Archivo',sans-serif;font-stretch:112%;font-size:19px;font-weight:700;margin:0}
+.badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--mist);white-space:nowrap}
+.badge.easy{color:var(--torch);border-color:var(--torch)}
+.badge.moderate{color:var(--chalk);border-color:var(--line)}
+.badge.hard,.badge.none{color:var(--mist);border-color:var(--line);opacity:.7}
+.times{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:2px;margin:16px 0 0;
+  background:var(--line);border:1px solid var(--line)}
+.t{background:var(--stone);padding:11px 12px}
+.t .lbl{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);display:block;margin-bottom:5px}
+.t .val{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:500}
+.t.likely{background:var(--stone2)}
+.t.likely .val{color:var(--torch);font-weight:700}
+.t.cut .val{color:var(--mist)}
+.t.tight .val{color:var(--alert);font-weight:700}
+.segline{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--mist);margin:13px 0 0}
+.segline b{color:var(--chalk);font-weight:500}
+.note{color:var(--mist);font-size:13.5px;margin:11px 0 0;max-width:66ch}
+.moon{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:#7FA8D8;margin-left:10px}
+.warn{margin:12px 0 0;padding:9px 12px;border-left:2px solid var(--alert);background:rgba(217,81,60,.09);
+  font-size:12.5px;color:#F3B5A9}
+
+.cal{margin:40px 0 0;padding:22px 24px 24px;background:var(--stone);border:1px solid var(--line)}
+.cal h2{font-size:15px;font-weight:700;letter-spacing:.02em;margin:0 0 4px}
+.cal .src{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sea);margin:0 0 14px}
+.calgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);margin:0 0 16px}
+.calgrid .c{background:var(--night);padding:12px 13px}
+.calgrid .c .v{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;display:block}
+.calgrid .c .v em{font-style:normal;color:var(--alert)}
+.calgrid .c .v i{font-style:normal;color:var(--sea)}
+.calgrid .c .k{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mist)}
+.cal p{color:var(--mist);font-size:13px;margin:9px 0 0;max-width:74ch}
+.cal p b{color:var(--chalk);font-weight:600}
+
+/* ---------- live mode ---------- */
+.t.actin{background:var(--night)}
+.t.actin input{width:100%;background:transparent;color:var(--sea);border:0;border-bottom:1px dashed var(--line);
+  padding:0 0 3px;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700}
+.t.actin input:focus{outline:none;border-bottom-color:var(--sea)}
+.t.got{background:var(--night)}
+.t.got .val{color:var(--sea)}
+.delta{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+  padding:2px 8px;border-radius:99px;margin-left:10px;vertical-align:2px}
+.delta.ahead{color:#7FD8B2;border:1px solid #2E5F4B}
+.delta.behind{color:#F3B5A9;border:1px solid #6E3328}
+.station.past{opacity:.45}
+.station.anchor{background:var(--stone)}
+.livebar{margin:36px 0 0;padding:14px 16px;border:1px dashed var(--sea);color:var(--mist);font-size:13px}
+.livebar b{color:var(--sea);font-weight:700}
+
+footer{margin:56px 0 0;padding:26px 0 0;border-top:1px solid var(--line);color:var(--mist);font-size:12.5px;max-width:74ch}
+footer b{color:var(--chalk);font-weight:600}
+@media (max-width:560px){
+  .station{grid-template-columns:60px 1fr}
+  .rail:before{left:46px} .rail:after{left:42px}
+  .body{padding-left:18px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .station{transition:background .25s}
+}
+.station:target{background:var(--stone)}
+@media print{
+  body{background:#fff;color:#111}
+  .controls,.filters,.legend{display:none}
+  .station,.facts,header,footer{border-color:#bbb}
+  .t{background:#f4f4f4}.t.likely{background:#e9e9e9}
+  .rail:before,.rail:after{background:#999;border-color:#fff}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Nice by UTMB · Ultra 100M · Auron → Nice</p>
+  <h1>Where to catch<br>Gauthier</h1>
+  <p class="lede">Sixteen timing points, three arrival scenarios, and an honest verdict on which ones a supporter can actually reach by car. No more guessed reference time &mdash; every number is now paced off the second-by-second file of his Nice 111K, September 2025.</p>
+  <div class="facts">
+    <div class="fact"><span class="v">167.2</span><span class="k">kilometres</span></div>
+    <div class="fact"><span class="v">9,930</span><span class="k">metres D+</span></div>
+    <div class="fact"><span class="v">11,519</span><span class="k">metres D−</span></div>
+    <div class="fact"><span class="v">2,531</span><span class="k">high point</span></div>
+    <div class="fact"><span class="v">2</span><span class="k">nights out</span></div>
+  </div>
+</header>
+
+<section class="profile-sec">
+  <p class="sec-label">Course profile — shaded where he'll be running in the dark</p>
+  <div class="profile-box">
+    <svg class="prof" id="prof" viewBox="0 0 1000 300" preserveAspectRatio="none" role="img" aria-label="Elevation profile of the 167 km course"></svg>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--torch)"></i>Crew can reach this point</span>
+    <span><i style="background:var(--mist)"></i>Runner only</span>
+    <span><i style="background:#243449"></i>Darkness, at predicted pace</span>
+  </div>
+</section>
+
+<section class="cal">
+  <h2>What last year&rsquo;s file actually says</h2>
+  <p class="src">Garmin FIT &middot; Nice 111K &middot; 27 Sept 2025 &middot; 89,986 GPS points</p>
+  <div class="calgrid">
+    <div class="c"><span class="v">114.95 km</span><span class="k">watch distance</span></div>
+    <div class="c"><span class="v">5,600 / 6,964</span><span class="k">m D+ / D&minus;</span></div>
+    <div class="c"><span class="v">25:00:08</span><span class="k">elapsed</span></div>
+    <div class="c"><span class="v">2h45</span><span class="k">standing still</span></div>
+    <div class="c"><span class="v"><i>&asymp;590 m/h</i></span><span class="k">climb rate &mdash; held all race</span></div>
+    <div class="c"><span class="v">7.6 &rarr; <em>4.7</em> km/h</span><span class="k">descents, fresh &rarr; km 60</span></div>
+  </div>
+  <p><b>The climbing never broke.</b> On steep ground (16&ndash;24% grades) you moved at 592 m/h in the first 38 km, 561 m/h through the brutal middle, and 593 m/h after km 80. That is a metronome.</p>
+  <p><b>The descents are where the race leaked away.</b> On the same &minus;16% grades your speed fell from 7.6 km/h fresh to 4.7 km/h by mid-race &mdash; fitted, each 100 m of descent cost you as much time as 630 m of flat, two and a half times the textbook figure. The 100M has 11,519 m of it.</p>
+  <p><b>Stops:</b> eleven halts of 3+ minutes totalling 2h04 &mdash; the big ones 39 min around Levens (km 68), 20 min at km 55, 20 min at km 88 &mdash; plus another ~40 min of diffuse shuffling. 2h45 stationary in total.</p>
+</section>
+
+<section class="controls">
+  <div class="ctl-grid">
+    <div>
+      <label for="start">Race start &mdash; Friday</label>
+      <input id="start" type="time" value="12:00">
+      <p class="hint">Inferred from the 14:50 cutoff at N1. Check the 2026 runner&rsquo;s guide.</p>
+    </div>
+    <div>
+      <label for="form">Shape vs September 2025</label>
+      <select id="form">
+        <option value="0.92">Fitter than the 111K (&minus;8%)</option>
+        <option value="1.00" selected>Same engine as the 111K</option>
+        <option value="1.10">Rough day (+10%)</option>
+      </select>
+      <p class="hint">Scales the pace fitted from the FIT file. Everything else is measured.</p>
+    </div>
+    <div>
+      <label for="stops">Aid stations &amp; sleep</label>
+      <select id="stops">
+        <option value="150">Disciplined &mdash; 2h30 total stopped</option>
+        <option value="225" selected>Same rhythm as the 111K &mdash; ~3h45</option>
+        <option value="285">Plus a 1h sleep at Levens &mdash; ~4h45</option>
+      </select>
+      <p class="hint">Last year: 2h45 stationary over 111 km. Two nights will want more.</p>
+    </div>
+  </div>
+  <div class="readout">
+    <div>
+      <div class="big mono" id="fin">&mdash;</div>
+      <div class="sub">Predicted finish on the Prom</div>
+    </div>
+    <div>
+      <div class="mid" id="tot">&mdash;</div>
+      <div class="sub">Elapsed</div>
+    </div>
+    <div>
+      <div class="mid" id="win">&mdash;</div>
+      <div class="sub">Earliest &rarr; latest</div>
+    </div>
+  </div>
+</section>
+
+<div class="livebar"><b>Race day:</b> when he actually comes through a point, type the clock time into that card&rsquo;s <b>Arrived</b> box. Every station downstream re-predicts off his real pace, and the uncertainty band restarts from the last confirmed point. Entered times are saved on this device, so the page survives a reload &mdash; but each supporter&rsquo;s phone keeps its own copy; they are not shared between people.</div>
+
+<div class="filters">
+  <button class="chip" id="f-all" aria-pressed="true">All 17 points</button>
+  <button class="chip" id="f-reach" aria-pressed="false">Only where crew can get</button>
+  <button class="chip" id="f-clear" aria-pressed="false">Clear arrived times</button>
+</div>
+
+<div id="list"></div>
+
+<footer>
+  <p><b>How the prediction works now.</b> The 111K FIT file was cut into 2&nbsp;km segments and a personal cost model fitted to your moving time: each 100&nbsp;m of climb costs you like 1.26&nbsp;km of flat, each 100&nbsp;m of descent like 0.63&nbsp;km, and your pace drifted from 0.69&times; to 0.90&times; of the fitted mean over the race (R&sup2;&nbsp;0.77). That drift is extended linearly into the extra distance of the 100M &mdash; measured in work done, not hours &mdash; with a small extra penalty for the second night, which the file cannot know about. Aid-station time is your chosen budget, split across stations in proportion to their size. Earliest and latest widen through the race, roughly &minus;7% to +26% by Plateau St Michel, because that is how uncertainty behaves over two nights.</p>
+  <p><b>How live mode works.</b> A confirmed arrival becomes the new anchor: the plan-vs-actual pace ratio up to that point is carried into the remaining legs, weighted by how many hours of evidence it rests on (a 15-minute lead at km 8 moves the forecast a little; the same lead after 14 hours moves it a lot). The uncertainty band collapses to zero at the anchor and regrows toward the finish. Only the latest confirmed point steers &mdash; earlier entries stay visible as a record.</p>
+  <p><b>What to treat carefully.</b> Distances and cutoffs come from the official profile chart; leg climb/descent from the Trace de Trail GPX, snapped to village coordinates. The fade extension beyond 25 hours is the honest guess in the model: your file proves the first 25 hours, nobody&rsquo;s file proves hour 40. Cutoff times are barriers, not targets: a red latest-arrival means that pace ends the race.</p>
+</footer>
+
+</div>
+<script>
+const POLY = [[0.0, 1594], [0.29, 1601], [0.54, 1622], [0.83, 1630], [1.23, 1658], [1.64, 1684], [2.03, 1701], [2.42, 1726], [2.9, 1749], [3.29, 1786], [3.64, 1809], [3.94, 1798], [4.2, 1808], [4.51, 1806], [4.81, 1784], [5.16, 1753], [5.47, 1733], [5.63, 1717], [5.73, 1697], [5.92, 1649], [6.22, 1578], [6.62, 1500], [6.87, 1443], [7.02, 1393], [7.29, 1321], [7.5, 1265], [7.71, 1212], [7.99, 1162], [8.29, 1138], [8.65, 1143], [8.99, 1184], [9.54, 1262], [9.7, 1331], [9.83, 1377], [10.17, 1460], [10.56, 1538], [10.9, 1613], [11.15, 1678], [11.48, 1732], [11.68, 1770], [11.87, 1795], [12.08, 1828], [12.3, 1872], [12.39, 1905], [12.74, 1985], [13.02, 2051], [13.12, 2076], [13.28, 2110], [13.45, 2158], [13.91, 2241], [14.37, 2339], [14.72, 2378], [15.24, 2385], [15.63, 2398], [15.99, 2386], [16.43, 2429], [16.97, 2486], [17.35, 2503], [17.74, 2522], [18.18, 2587], [18.53, 2640], [18.94, 2662], [19.4, 2703], [19.83, 2681], [20.08, 2648], [20.36, 2580], [20.66, 2516], [21.03, 2459], [21.47, 2416], [22.08, 2388], [22.61, 2302], [23.09, 2247], [23.3, 2233], [23.59, 2217], [23.86, 2229], [24.13, 2221], [24.41, 2209], [24.72, 2200], [25.05, 2176], [25.32, 2173], [25.56, 2177], [25.82, 2186], [26.22, 2215], [26.55, 2250], [27.0, 2287], [27.33, 2331], [27.68, 2365], [27.85, 2389], [28.13, 2420], [28.36, 2466], [28.55, 2529], [28.92, 2531], [29.37, 2574], [30.05, 2570], [30.56, 2607], [31.14, 2551], [31.78, 2368], [32.39, 2196], [32.77, 2014], [33.39, 1844], [33.82, 1752], [34.24, 1631], [34.67, 1477], [35.13, 1336], [35.5, 1212], [36.0, 1063], [36.31, 950], [36.64, 858], [36.86, 857], [37.31, 902], [37.66, 946], [37.88, 1003], [38.07, 1058], [38.37, 1113], [38.94, 1165], [39.61, 1185], [40.07, 1169], [40.53, 1169], [41.1, 1245], [41.63, 1370], [42.44, 1410], [43.08, 1349], [43.63, 1263], [44.24, 1147], [44.84, 939], [45.25, 793], [45.57, 751], [46.01, 748], [46.5, 745], [47.01, 745], [47.49, 735], [47.82, 746], [48.37, 732], [48.95, 726], [49.57, 697], [50.21, 662], [50.85, 673], [51.52, 686], [52.12, 822], [52.61, 955], [53.07, 959], [53.54, 937], [53.95, 985], [54.37, 1099], [54.73, 1172], [54.97, 1231], [55.29, 1235], [55.65, 1263], [56.09, 1318], [56.52, 1343], [57.02, 1366], [57.4, 1321], [57.91, 1247], [58.41, 1177], [58.77, 1106], [59.16, 1046], [59.58, 990], [60.09, 936], [60.64, 861], [61.13, 798], [61.58, 717], [62.05, 697], [62.25, 665], [62.43, 647], [62.69, 608], [62.97, 583], [63.22, 561], [63.54, 522], [63.85, 494], [64.06, 491], [64.44, 505], [64.79, 586], [65.14, 632], [65.38, 672], [65.57, 720], [65.97, 749], [66.43, 812], [66.92, 842], [67.31, 894], [67.69, 988], [68.21, 1044], [68.68, 1067], [68.9, 1073], [69.18, 1064], [69.41, 1034], [69.71, 998], [70.19, 952], [70.51, 916], [70.78, 875], [71.04, 838], [71.35, 822], [71.63, 819], [71.95, 861], [72.46, 942], [72.92, 970], [73.34, 1020], [73.59, 1038], [73.84, 1032], [74.03, 1033], [74.31, 1070], [74.64, 1115], [74.92, 1134], [75.37, 1109], [75.6, 1097], [75.91, 1142], [76.5, 1266], [77.05, 1352], [77.51, 1433], [78.0, 1485], [78.49, 1520], [79.0, 1625], [79.38, 1710], [79.76, 1759], [80.23, 1830], [80.69, 1905], [81.09, 1963], [81.56, 2043], [82.17, 2042], [82.77, 1982], [83.34, 1985], [83.83, 1951], [84.34, 1921], [84.94, 1915], [85.45, 1936], [85.87, 1945], [86.36, 1999], [86.81, 1973], [87.28, 1918], [87.6, 1856], [87.93, 1781], [88.15, 1740], [88.48, 1705], [88.85, 1677], [89.47, 1660], [89.91, 1609], [90.42, 1557], [90.86, 1526], [91.39, 1496], [91.78, 1503], [92.26, 1500], [92.79, 1462], [93.28, 1435], [93.82, 1402], [94.32, 1378], [94.78, 1356], [95.34, 1382], [95.88, 1395], [96.34, 1424], [96.81, 1432], [97.39, 1409], [97.87, 1407], [98.5, 1405], [99.08, 1449], [99.35, 1492], [99.53, 1509], [99.66, 1527], [99.89, 1507], [100.09, 1475], [100.32, 1423], [100.46, 1389], [100.61, 1366], [100.93, 1350], [101.38, 1330], [101.67, 1297], [102.05, 1254], [102.27, 1233], [102.5, 1212], [102.84, 1203], [103.13, 1173], [103.42, 1126], [103.63, 1098], [103.87, 1076], [104.04, 1065], [104.24, 1024], [104.41, 985], [104.58, 947], [104.77, 902], [105.0, 856], [105.22, 821], [105.55, 799], [105.82, 780], [106.17, 781], [106.58, 804], [106.97, 770], [107.38, 769], [107.83, 805], [108.22, 785], [108.66, 738], [109.16, 733], [109.69, 683], [110.3, 638], [110.76, 617], [111.23, 587], [111.68, 583], [112.15, 486], [112.65, 418], [113.15, 350], [113.39, 297], [113.61, 240], [113.79, 232], [114.26, 198], [114.66, 218], [115.21, 292], [115.59, 362], [116.06, 420], [116.51, 495], [117.1, 535], [117.35, 526], [117.72, 526], [117.97, 544], [118.07, 570], [118.21, 597], [118.47, 635], [118.71, 652], [119.16, 655], [119.54, 670], [119.81, 688], [120.11, 701], [120.37, 729], [120.8, 797], [121.18, 880], [121.47, 959], [121.82, 1015], [122.1, 1072], [122.36, 1111], [122.63, 1113], [122.94, 1105], [123.3, 1083], [123.7, 1108], [123.99, 1167], [124.22, 1250], [124.46, 1350], [124.82, 1388], [125.34, 1331], [125.87, 1277], [126.31, 1242], [126.51, 1228], [126.69, 1204], [126.93, 1175], [127.2, 1138], [127.57, 1092], [127.97, 1048], [128.31, 984], [128.65, 925], [129.12, 873], [129.65, 879], [130.29, 778], [130.78, 680], [131.25, 635], [131.72, 575], [131.96, 566], [132.13, 602], [132.28, 648], [132.57, 705], [132.96, 758], [133.24, 800], [133.59, 837], [133.87, 824], [134.39, 768], [134.86, 719], [135.39, 661], [135.7, 625], [136.07, 577], [136.4, 560], [136.73, 533], [137.0, 494], [137.37, 436], [137.75, 373], [137.91, 347], [138.24, 358], [138.55, 373], [138.99, 392], [139.43, 377], [139.72, 316], [140.07, 274], [140.62, 282], [141.28, 338], [141.64, 381], [142.12, 464], [142.6, 451], [143.09, 413], [143.55, 359], [144.17, 279], [144.38, 205], [144.73, 123], [145.17, 102], [145.41, 107], [145.7, 101], [146.32, 88], [146.87, 90], [147.29, 87], [147.77, 86], [148.08, 93], [148.56, 119], [149.0, 180], [149.32, 217], [149.49, 245], [149.77, 289], [150.07, 313], [150.43, 332], [150.83, 401], [151.25, 445], [151.74, 473], [151.98, 473], [152.18, 494], [152.38, 527], [152.77, 557], [153.24, 562], [153.57, 560], [153.83, 551], [154.25, 549], [154.47, 531], [154.84, 499], [155.2, 458], [155.59, 407], [155.94, 367], [156.39, 317], [156.75, 316], [157.08, 334], [157.32, 346], [157.63, 352], [157.89, 350], [158.17, 337], [158.36, 298], [158.62, 225], [158.82, 177], [159.23, 161], [159.66, 135], [160.24, 153], [160.78, 211], [161.29, 194], [161.8, 165], [162.17, 120], [162.56, 72], [163.01, 12], [163.31, 6], [163.69, 13], [164.22, 11], [164.74, 26], [165.16, 7], [165.84, 12], [166.3, 6], [166.66, 4], [167.13, 3], [167.2, 2]];
+const ST = [{"name": "Auron — départ", "km": 0, "ele": 1594, "segkm": 0, "up": 0, "dn": 0, "cutDay": null, "cutTime": null, "access": "easy", "stop": 0, "note": "Ski resort, big parking. 1h45 from Nice by car. Last easy coffee before the mountain."}, {"name": "N1 · St-Étienne-de-Tinée", "km": 8.1, "ele": 1152, "segkm": 8.1, "up": 257, "dn": 715, "cutDay": 0, "cutTime": "14:50", "access": "easy", "stop": 4, "note": "10 min down the valley from Auron. Your crew can leave the start line and still beat you here."}, {"name": "N2 · Cabane des Chasseurs", "km": 16.5, "ele": 2442, "segkm": 8.4, "up": 1442, "dn": 104, "cutDay": 0, "cutTime": "17:45", "access": "none", "stop": 6, "note": "2,442 m, no road. The 1,442 m climb out of St-Étienne is the biggest single ascent of the race."}, {"name": "N3 · Collongue", "km": 28.9, "ele": 2531, "segkm": 12.4, "up": 708, "dn": 616, "cutDay": 0, "cutTime": "20:45", "access": "none", "stop": 6, "note": "High point of the course. Dusk lands somewhere around here."}, {"name": "N4 · Isola village", "km": 38.0, "ele": 1043, "segkm": 9.1, "up": 355, "dn": 1898, "cutDay": 0, "cutTime": "23:15", "access": "easy", "stop": 12, "note": "On the M2205, straightforward night drive. Comes after a brutal 1,898 m descent — good place to hand over poles and a warm layer."}, {"name": "N5 · Pont de Paule", "km": 50.1, "ele": 662, "segkm": 12.1, "up": 523, "dn": 917, "cutDay": 1, "cutTime": "03:00", "access": "moderate", "stop": 8, "note": "Tinée valley road, reachable but deep in the night. Only for the truly committed."}, {"name": "N6 · St-Sauveur-sur-Tinée", "km": 63.7, "ele": 504, "segkm": 13.6, "up": 816, "dn": 980, "cutDay": 1, "cutTime": "07:15", "access": "easy", "stop": 20, "note": "Easy access on the M2205 and it lands around sunrise. One of the best stops of the whole race."}, {"name": "N7 · Rimplas", "km": 68.4, "ele": 1067, "segkm": 4.7, "up": 601, "dn": 18, "cutDay": 1, "cutTime": "09:00", "access": "moderate", "stop": 6, "note": "Short 4.7 km link but 601 m straight up. L'Hostellerie de Rimplas at the top does coffee from 08:00."}, {"name": "N8 · Venanson", "km": 83.5, "ele": 1150, "segkm": 15.1, "up": 1394, "dn": 1311, "cutDay": 1, "cutTime": "14:00", "access": "moderate", "stop": 15, "note": "Road up from St-Martin-Vésubie, and at fitted pace it lands Saturday morning — the friendliest daylight stop of the middle of the race."}, {"name": "N9 · Granges de la Brasque", "km": 93.8, "ele": 1402, "segkm": 10.3, "up": 702, "dn": 450, "cutDay": 1, "cutTime": "18:00", "access": "hard", "stop": 10, "note": "Forest road, limited parking, no realistic public transport. Skip unless someone has a 4x4 and patience."}, {"name": "N10 · Utelle", "km": 109.8, "ele": 671, "segkm": 16.0, "up": 335, "dn": 1093, "cutDay": 1, "cutTime": "22:00", "access": "moderate", "stop": 15, "note": "Winding road up from the Vésubie. Long 16 km approach — build in a wide margin if you wait here."}, {"name": "N11 · Levens", "km": 121.8, "ele": 600, "segkm": 12.0, "up": 902, "dn": 973, "cutDay": 2, "cutTime": "01:30", "access": "easy", "stop": 20, "note": "30 min from Nice on good road, Saturday evening at fitted pace. Last big base before the finishing hills — and where a sleep would happen."}, {"name": "N12 · Chapelle St Michel", "km": 128.3, "ele": 984, "segkm": 6.5, "up": 560, "dn": 176, "cutDay": 2, "cutTime": "04:45", "access": "hard", "stop": 6, "note": "Near Aspremont, awkward access in the dark. Better to sleep and take Tourrette-Levens instead."}, {"name": "N13 · Tourrette-Levens", "km": 140.4, "ele": 274, "segkm": 12.1, "up": 381, "dn": 1091, "cutDay": 2, "cutTime": "08:00", "access": "easy", "stop": 12, "note": "20 min from Nice on good road. At fitted pace he’s through near midnight, not Sunday morning — still the most convenient stop of the back half."}, {"name": "N14 · Drap", "km": 147.4, "ele": 87, "segkm": 7.0, "up": 248, "dn": 442, "cutDay": 2, "cutTime": "10:00", "access": "easy", "stop": 8, "note": "15 min from Nice, essentially at sea level. Easy for anyone who doesn't want a mountain road."}, {"name": "N15 · Plateau St Michel", "km": 156.5, "ele": 311, "segkm": 9.1, "up": 514, "dn": 282, "cutDay": 2, "cutTime": "13:00", "access": "moderate", "stop": 6, "note": "Above Villefranche. Parking is cramped — bus 84 from Nice runs up here. Last point before the sea."}, {"name": "Arrivée — Nice", "km": 167.2, "ele": 5, "segkm": 10.7, "up": 192, "dn": 453, "cutDay": null, "cutTime": null, "access": "easy", "stop": 0, "note": "Promenade des Anglais. Everyone should be here."}];
+
+const $ = id => document.getElementById(id);
+const DAYS = ['Fri','Sat','Sun','Mon'];
+const SUNRISE = 7.25, SUNSET = 19.5;   // late-September Côte d'Azur
+
+function parseHM(s){
+  const m = String(s).trim().match(/^(\d{1,2})\s*[:h.]?\s*(\d{1,2})?$/);
+  if(!m) return null;
+  const h = +m[1], mi = m[2] ? +m[2] : 0;
+  if(h<0||mi<0||mi>59) return null;
+  return h + mi/60;
+}
+function fmtDur(h){
+  const t = Math.round(h*60);
+  return Math.floor(t/60) + 'h' + String(t%60).padStart(2,'0');
+}
+function fmtClock(abs){            // abs = hours from Friday 00:00
+  let d = Math.floor(abs/24), h = abs - d*24;
+  let hh = Math.floor(h), mm = Math.round((h-hh)*60);
+  if(mm===60){mm=0;hh++;} if(hh===24){hh=0;d++;}
+  return (DAYS[d]||'+'+d) + ' ' + String(hh).padStart(2,'0') + ':' + String(mm).padStart(2,'0');
+}
+function isDark(abs){
+  const h = abs - Math.floor(abs/24)*24;
+  return h < SUNRISE || h >= SUNSET;
+}
+
+function compute(){
+  const start = parseHM($('start').value) || 12;
+  const form = parseFloat($('form').value);
+  const stopBudget = parseFloat($('stops').value);   // minutes total
+
+  // --- fitted from the 111K FIT file (2 km segments, least squares, R2 0.77) ---
+  const P  = 0.12124;     // hours per personal effort-km, at fade multiplier 1
+  const CU = 12.56;       // km-equivalent per 1000 m of climb  (i.e. 1.256 km per 100 m)
+  const CD = 6.33;        // km-equivalent per 1000 m of descent
+  const FA = 0.690, FB = 0.210;   // pace multiplier = FA + FB * (work done / 111K work)
+  const EK111 = 229.3;    // his 111K, in the same personal units
+
+  const ek = ST.map(s => s.segkm + s.up/1000*CU + s.dn/1000*CD);
+
+  // fade measured against absolute work done, so the 100M keeps slowing past
+  // where the 111K ended; second night adds a small extra penalty
+  const mult = f => FA + FB*f + (f>1 ? 0.10*Math.pow(f-1,1.5) : 0);
+
+  // aid-station budget split by station weight
+  const wsum = ST.reduce((a,s)=>a+s.stop,0);
+
+  let tL = start, tB = start, tW = start, cum = 0;
+  const rows = [];
+  for(let i=0;i<ST.length;i++){
+    const s = ST[i];
+    if(i>0){
+      const f = (cum + ek[i]/2)/EK111;
+      const mv = P * form * mult(f) * ek[i];
+      const fr = (cum + ek[i]/2)/(EK111*1.59);   // 0..1 through the 100M for band width
+      tL += mv;
+      tB += mv * (1 - 0.06 - 0.08*fr);
+      tW += mv * (1 + 0.08 + 0.18*fr);
+      cum += ek[i];
+    }
+    const stop = (s.stop/wsum) * stopBudget / 60;
+    rows.push({s, likely:tL, best:tB, worst:tW});
+    tL += stop; tB += stop*0.6; tW += stop*1.6;
+  }
+  return rows;
+}
+
+// ---------- live recalibration ----------
+const ACT = {};   // station index -> clock hours (0-24) actually arrived
+const STORE_KEY = 'catch-gauthier-100m-v1';
+
+function saveState(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify({
+      act: ACT,
+      start: $('start').value, form: $('form').value, stops: $('stops').value
+    }));
+  }catch(e){ /* storage unavailable (private mode, preview) — page still works, just no persistence */ }
+}
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return;
+    const st = JSON.parse(raw);
+    if(st.start) $('start').value = st.start;
+    if(st.form)  $('form').value  = st.form;
+    if(st.stops) $('stops').value = st.stops;
+    if(st.act) for(const k in st.act) ACT[+k] = st.act[k];
+  }catch(e){}
+}
+
+function absFromClock(clock, nearAbs){
+  // pick the day (Fri..Mon) that puts this clock time closest to the plan
+  let best=null;
+  for(let d=0; d<4; d++){
+    const cand = d*24 + clock;
+    if(best===null || Math.abs(cand-nearAbs) < Math.abs(best-nearAbs)) best=cand;
+  }
+  return best;
+}
+
+function applyActuals(rows){
+  const start = parseHM($('start').value) || 12;
+  const idxs = Object.keys(ACT).map(Number).sort((a,b)=>a-b);
+  if(!idxs.length) return {rows, anchor:null};
+
+  // resolve each actual to an absolute time, walking forward so days stay ordered
+  const abs = {};
+  let prev = start;
+  for(const i of idxs){
+    const a = absFromClock(ACT[i], Math.max(rows[i].likely, prev));
+    abs[i] = Math.max(a, prev);
+    prev = abs[i];
+  }
+  const a = idxs[idxs.length-1];               // latest confirmed point = anchor
+  const A = abs[a];
+
+  // pace ratio actual/plan up to the anchor, regressed toward 1 early on
+  const Ea = rows[a].likely - start;
+  const r  = Ea > 0.25 ? (A - start)/Ea : 1;
+  const w  = Ea/(Ea + 6);      // trust grows with hours of confirmed racing: ~18% after 80 min, ~70% after 14 h
+  const rE = 1 + (r-1)*w;
+
+  const out = rows.map((row,j)=>{
+    if(j < a)  return Object.assign({}, row, {phase:'past',  actual: abs[j]!==undefined?abs[j]:null});
+    if(j === a)return Object.assign({}, row, {phase:'anchor', actual:A, likely:A, best:A, worst:A,
+                                              delta: A - rows[a].likely});
+    const dE = row.likely - rows[a].likely;    // planned hours anchor -> here
+    const L  = A + dE*rE;
+    const g  = (row.s.km - rows[a].s.km)/(167.2 - rows[a].s.km);  // band regrows from anchor
+    return Object.assign({}, row, {phase:'future',
+      likely:L, best:A + dE*rE*(1-0.04-0.09*g), worst:A + dE*rE*(1+0.06+0.20*g), actual:null});
+  });
+  return {rows:out, anchor:a, delta:A - rows[a].likely, ratio:rE};
+}
+
+function cutAbs(s, startH){
+  if(s.cutDay===null || s.cutDay===undefined) return null;
+  return s.cutDay*24 + parseHM(s.cutTime);
+}
+
+function render(){
+  const base = compute();
+  const live = applyActuals(base);
+  const rows = live.rows;
+  const startH = parseHM($('start').value) || 12;
+  const fin = rows[rows.length-1];
+
+  $('fin').textContent = fmtClock(fin.likely);
+  $('tot').textContent = fmtDur(fin.likely - startH) +
+    (live.anchor!==null ? (live.delta<=0 ? ' · '+fmtDur(-live.delta)+' ahead' : ' · '+fmtDur(live.delta)+' behind') : '');
+  $('win').textContent = fmtClock(fin.best) + '  →  ' + fmtClock(fin.worst) +
+    (live.anchor!==null ? '  (from '+rows[live.anchor].s.name.split('·')[0].trim()+')' : '');
+
+  const onlyReach = $('f-reach').getAttribute('aria-pressed')==='true';
+  const list = $('list'); list.innerHTML='';
+
+  rows.forEach((r,i)=>{
+    const s = r.s;
+    const reach = (s.access==='easy'||s.access==='moderate');
+    if(onlyReach && !reach) return;
+
+    const cut = cutAbs(s);
+    const el = document.createElement('div');
+    el.className = 'station' + (reach?' reach':'') + (i===rows.length-1?' fin':'')
+      + (r.phase==='past'?' past':'') + (r.phase==='anchor'?' anchor':'');
+    el.id = 'st'+i;
+
+    let tight = '', warn = '';
+    if(cut!==null && r.phase!=='past' && r.phase!=='anchor'){
+      if(r.worst > cut){ tight=' tight';
+        warn = '<div class="warn">Worst case misses this barrier by '+fmtDur(r.worst-cut)+'. Anything close to that pace and the race ends here.</div>';
+      } else if(cut - r.likely < 1.5){
+        warn = '<div class="warn">Only '+fmtDur(cut-r.likely)+' of margin at current pace. Thin.</div>';
+      }
+    }
+    const dark = isDark(r.likely) ? '<span class="moon">◗ night</span>' : '';
+
+    let deltaChip = '';
+    if(r.phase==='anchor'){
+      const d = r.delta;
+      deltaChip = d<=0
+        ? '<span class="delta ahead">'+fmtDur(-d)+' ahead of plan</span>'
+        : '<span class="delta behind">'+fmtDur(d)+' behind plan</span>';
+    }
+
+    const actVal = ACT[i]!==undefined
+      ? String(Math.floor(ACT[i])).padStart(2,'0')+':'+String(Math.round((ACT[i]%1)*60)).padStart(2,'0') : '';
+
+    let cells;
+    if(r.phase==='anchor' || (r.phase==='past' && r.actual!==null)){
+      cells =
+        '<div class="t got"><span class="lbl">Arrived — confirmed</span><span class="val">'+fmtClock(r.actual)+'</span></div>'+
+        '<div class="t cut"><span class="lbl">Was predicted</span><span class="val">'+fmtClock(base[i].likely)+'</span></div>'+
+        '<div class="t cut"><span class="lbl">Cutoff</span><span class="val">'+(cut!==null?fmtClock(cut):'—')+'</span></div>'+
+        '<div class="t actin"><span class="lbl">Arrived (edit)</span><input class="act" data-i="'+i+'" type="time" value="'+actVal+'"></div>';
+    } else {
+      cells =
+        '<div class="t"><span class="lbl">Earliest</span><span class="val">'+fmtClock(r.best)+'</span></div>'+
+        '<div class="t likely"><span class="lbl">Likely</span><span class="val">'+fmtClock(r.likely)+'</span></div>'+
+        '<div class="t'+tight+'"><span class="lbl">Latest</span><span class="val">'+fmtClock(r.worst)+'</span></div>'+
+        '<div class="t cut"><span class="lbl">Cutoff</span><span class="val">'+(cut!==null?fmtClock(cut):'—')+'</span></div>'+
+        (i>0 ? '<div class="t actin"><span class="lbl">Arrived?</span><input class="act" data-i="'+i+'" type="time" value="'+actVal+'"></div>' : '');
+    }
+
+    el.innerHTML =
+      '<div class="rail"><span class="km">'+s.km.toFixed(1)+'</span><span class="alt">'+s.ele+' m</span></div>'+
+      '<div class="body">'+
+        '<div class="st-head"><h3 class="st-name">'+s.name+dark+deltaChip+'</h3>'+
+          '<span class="badge '+s.access+'">'+({easy:'Easy access',moderate:'Doable',hard:'Difficult',none:'No access'})[s.access]+'</span></div>'+
+        (i>0 ? '<p class="segline">Leg <b>'+s.segkm.toFixed(1)+' km</b> · <b>+'+s.up.toLocaleString()+' m</b> · <b>−'+s.dn.toLocaleString()+' m</b></p>' : '')+
+        '<div class="times">'+cells+'</div>'+
+        warn+
+        '<p class="note">'+s.note+'</p>'+
+      '</div>';
+    list.appendChild(el);
+  });
+
+  drawProfile(rows);
+}
+
+function drawProfile(rows){
+  const W=1000,H=300,PT=14,PB=26,PL=0,PR=0;
+  const maxE=2700, maxK=167.2;
+  const x = k => PL + k/maxK*(W-PL-PR);
+  const y = e => PT + (1 - e/maxE)*(H-PT-PB);
+
+  // time at any km, interpolated between control points
+  const tAt = k => {
+    for(let i=1;i<rows.length;i++){
+      if(k <= rows[i].s.km){
+        const a=rows[i-1], b=rows[i];
+        const f=(k-a.s.km)/Math.max(.001,(b.s.km-a.s.km));
+        return a.likely + f*(b.likely-a.likely);
+      }
+    }
+    return rows[rows.length-1].likely;
+  };
+
+  // contiguous dark stretches
+  let bands=[], open=null;
+  for(let k=0;k<=maxK;k+=0.5){
+    const d=isDark(tAt(k));
+    if(d && open===null) open=k;
+    if(!d && open!==null){ bands.push([open,k]); open=null; }
+  }
+  if(open!==null) bands.push([open,maxK]);
+
+  let s='';
+  bands.forEach(b=>{ s+='<rect x="'+x(b[0])+'" y="'+PT+'" width="'+(x(b[1])-x(b[0]))+'" height="'+(H-PT-PB)+'" fill="#243449"/>'; });
+
+  [0,900,1700,2500].forEach(g=>{
+    s+='<line x1="0" y1="'+y(g)+'" x2="'+W+'" y2="'+y(g)+'" stroke="#2C3D51" stroke-width="1"/>';
+    s+='<text x="4" y="'+(y(g)-4)+'" fill="#8CA0B6" font-family="JetBrains Mono,monospace" font-size="9">'+g+' m</text>';
+  });
+
+  let d='M '+x(0)+' '+y(POLY[0][1]);
+  POLY.forEach(p=> d+=' L '+x(p[0])+' '+y(p[1]));
+  s+='<path d="'+d+' L '+x(maxK)+' '+(H-PB)+' L '+x(0)+' '+(H-PB)+' Z" fill="rgba(240,169,59,.13)"/>';
+  s+='<path d="'+d+'" fill="none" stroke="#F0A93B" stroke-width="1.6" stroke-linejoin="round"/>';
+
+  rows.forEach((r,i)=>{
+    const reach=(r.s.access==='easy'||r.s.access==='moderate');
+    const cx=x(r.s.km), cy=y(r.s.ele);
+    s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+cx+'" y2="'+(H-PB)+'" stroke="'+(reach?'#F0A93B':'#3D5169')+'" stroke-width="'+(reach?1:.6)+'" opacity="'+(reach?.5:.3)+'"/>';
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(reach?4.5:3)+'" fill="'+(reach?'#F0A93B':'#8CA0B6')+'" stroke="#0E1622" stroke-width="1.5"/>';
+    if(reach) s+='<text x="'+cx+'" y="'+(H-10)+'" fill="#F0A93B" font-family="JetBrains Mono,monospace" font-size="9" text-anchor="middle">'+(i===0?'0':i===rows.length-1?'FIN':'N'+i)+'</text>';
+  });
+  $('prof').innerHTML=s;
+}
+
+['start','form','stops'].forEach(id=> $(id).addEventListener('input', ()=>{ saveState(); render(); }));
+$('list').addEventListener('change', e=>{
+  const t = e.target;
+  if(!t.classList || !t.classList.contains('act')) return;
+  const i = +t.getAttribute('data-i');
+  const v = parseHM(t.value);
+  if(v===null){ delete ACT[i]; } else { ACT[i]=v; }
+  saveState(); render();
+});
+$('f-clear').addEventListener('click',()=>{ for(const k of Object.keys(ACT)) delete ACT[k]; saveState(); render(); });
+loadState();
+$('f-all').addEventListener('click',()=>{ $('f-all').setAttribute('aria-pressed','true'); $('f-reach').setAttribute('aria-pressed','false'); render(); });
+$('f-reach').addEventListener('click',()=>{ $('f-reach').setAttribute('aria-pressed','true'); $('f-all').setAttribute('aria-pressed','false'); render(); });
+render();
+</script>
+</body>
+</html>
